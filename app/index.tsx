@@ -1,5 +1,10 @@
 import { Text, View } from "react-native";
 
+/**
+ * Renders a full-screen centered view with a single instructional text.
+ *
+ * @returns A JSX element containing a centered `View` with a `Text` node that prompts editing `app/index.tsx`.
+ */
 export default function Index() {
   return (
     <View
