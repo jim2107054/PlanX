@@ -11,6 +11,7 @@ import {
   Linking,
 } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Index() {
   const openWebBrowser = async () => {
@@ -29,6 +30,10 @@ export default function Index() {
           <SmoothInfiniteScroll scrollDirection="up" iconSet="set3" />
         </View>
       </View>
+      <LinearGradient
+        colors={["transparent", "#fff"]}
+        style={styles.linearGradient}
+      />
       <View style={styles.contentContainer}>
         <Image
           source={require("@/assets/images/wolt-logo.png")}
@@ -139,5 +144,12 @@ const styles = StyleSheet.create({
     gap: 4,
     position: "relative",
     overflow: "hidden",
+  },
+  linearGradient: {
+    position: "absolute",
+    height: 200,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 });
