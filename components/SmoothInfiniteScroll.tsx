@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import Animated, {
   scrollTo,
   useAnimatedReaction,
+  useAnimatedRef,
   useSharedValue,
 } from "react-native-reanimated";
 
@@ -45,7 +46,7 @@ const SmoothInfiniteScroll = ({
   scrollDirection = "down",
   iconSet = "set1",
 }: SmoothInfiniteScrollProps) => {
-  const scrollRef = useRef<Animated.ScrollView>(null);
+  const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollY = useSharedValue(0);
 
   const iconData = iconDataSets[iconSet];
@@ -53,7 +54,7 @@ const SmoothInfiniteScroll = ({
   const totalContentHeight = items.length * ITEM_HEIGHT; // Calculate total content height for scrolling
 
   useEffect(() => {
-    if (scrollDirection == "up") {
+    if (scrollDirection === "up") {
       scrollY.value = totalContentHeight;
     } else {
       scrollY.value = 0;
@@ -68,7 +69,7 @@ const SmoothInfiniteScroll = ({
     return () => {
       clearInterval(interval);
     };
-  }, [scrollDirection]);
+  }, [scrollDirection, scrollY, totalContentHeight]);
 
   useAnimatedReaction(
     () => scrollY.value,

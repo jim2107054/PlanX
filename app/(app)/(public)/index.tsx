@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
 
 export default function Index() {
   const openWebBrowser = async () => {
@@ -51,9 +52,11 @@ export default function Index() {
             <AppleAuthButton />
           </Animated.View>
           <Animated.View entering={FadeInDown.delay(300)}>
-            <TouchableOpacity style={styles.otherButton}>
-              <Text style={styles.otherButtonText}>Other buttons</Text>
-            </TouchableOpacity>
+            <Link href="./other-options" asChild>
+              <TouchableOpacity style={styles.otherButton}>
+                <Text style={styles.otherButtonText}>Other buttons</Text>
+              </TouchableOpacity>
+            </Link>
           </Animated.View>
         </View>
 
